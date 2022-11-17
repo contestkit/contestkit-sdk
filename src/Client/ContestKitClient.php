@@ -31,27 +31,7 @@ class ContestKitClient
 
         return $request->json('data');
     }
-
-    public function winners(string $campaign)
-    {
-        $request = $this->getClient()
-            ->get("{$campaign}/winners");
-
-        $this->handleRequest(request: $request);
-
-        return $request->json('data');
-    }
-
-    public function prizes(string $campaign)
-    {
-        $request = $this->getClient()
-            ->get("{$campaign}/prizes");
-
-        $this->handleRequest(request: $request);
-
-        return $request->json('data');
-    }
-
+    
     public function page(string $campaign, string $page)
     {
         return $this->getClient()
