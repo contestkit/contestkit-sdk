@@ -31,7 +31,7 @@ class ContestKitClient
 
         return $request->json('data');
     }
-    
+
     public function winners(string $campaign)
     {
         $request = $this->getClient()
@@ -96,7 +96,7 @@ class ContestKitClient
 
         return $this->returnRegistration(request: $request);
     }
-    
+
     /**
      * @throws ValidationException
      */
