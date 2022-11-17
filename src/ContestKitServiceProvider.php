@@ -16,7 +16,7 @@ class ContestKitServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('sdk')
+            ->name('contestkit')
             ->hasConfigFile();
         // ->hasViews()
         // ->hasMigration('create_skeleton_table')
@@ -27,7 +27,7 @@ class ContestKitServiceProvider extends PackageServiceProvider
     {
         $this->app->singleton(
             ContestKitClient::class,
-            fn () => new ContestKitClient(config('sdk'))
+            fn () => new ContestKitClient(config('contestkit'))
         );
     }
 }
