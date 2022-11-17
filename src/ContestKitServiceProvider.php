@@ -19,8 +19,8 @@ class ContestKitServiceProvider extends PackageServiceProvider
             ->name('sdk')
             ->hasConfigFile();
         // ->hasViews()
-            // ->hasMigration('create_skeleton_table')
-            // ->hasCommand(SkeletonCommand::class);
+        // ->hasMigration('create_skeleton_table')
+        // ->hasCommand(SkeletonCommand::class);
     }
 
     public function registeringPackage()
