@@ -31,7 +31,7 @@ class ContestKitClient
 
         return $request->json('data');
     }
-    
+
     public function page(string $campaign, string $page)
     {
         return $this->getClient()
