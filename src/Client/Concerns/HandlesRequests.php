@@ -23,5 +23,4 @@ trait HandlesRequests
 
         return $request->json('data');
     }
-
 }

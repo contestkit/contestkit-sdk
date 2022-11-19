@@ -2,8 +2,8 @@
 
 namespace ContestKit\Sdk\Client\Concerns;
 
-use Illuminate\Validation\ValidationException;
 use ContestKit\Sdk\Data\Registration\Registration;
+use Illuminate\Validation\ValidationException;
 
 trait HandlesRegistrations
 {
@@ -37,7 +37,6 @@ trait HandlesRegistrations
 
         return $this->returnRegistration(request: $request);
     }
-
 
     public function resendVerificationEmail(string $campaign, string $registration)
     {
@@ -86,5 +85,4 @@ trait HandlesRegistrations
             'winner' => data_get($data, 'winner'),
         ]);
     }
-
 }

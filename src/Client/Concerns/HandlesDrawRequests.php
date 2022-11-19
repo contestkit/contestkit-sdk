@@ -25,7 +25,7 @@ trait HandlesDrawRequests
 
         return $request->json('data');
     }
-    
+
     public function autoSelectNumbersForDraw(string $campaign, string $draw, string $registration)
     {
         $request = $this->getClient()
