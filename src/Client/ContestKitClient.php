@@ -3,7 +3,6 @@
 namespace ContestKit\Sdk\Client;
 
 use ContestKit\Sdk\Data\Registration\Registration;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\ValidationException;
 
@@ -16,16 +15,17 @@ class ContestKitClient
     protected function getClient()
     {
         return Http::withHeaders(
-            array_merge(Arr::get($this->config, 'headers'), [
+            array_merge(data_get($this->config, 'headers'), [
                 'X-ContestKit-Host' => request()->getHttpHost(),
             ])
-        )->baseUrl(Arr::get($this->config, 'base_url'));
+        )->withToken(data_get($this->config, 'access_token'))
+            ->baseUrl(data_get($this->config, 'base_url'));
     }
 
     public function campaign(string $campaign)
     {
         $request = $this->getClient()
-            ->get($campaign);
+            ->get("{$campaign}/campaign");
 
         $this->handleRequest(request: $request);
 
@@ -59,7 +59,7 @@ class ContestKitClient
     public function register(string $campaign, array $request): Registration|ValidationException
     {
         $request = $this->getClient()
-            ->post("{$campaign}/register", $request);
+            ->post("{$campaign}/signup", $request);
 
         if ($request->clientError()) {
             throw ValidationException::withMessages($request->json()['errors']);
@@ -70,9 +70,7 @@ class ContestKitClient
 
     public function me(string $campaign, string $registration): Registration|ValidationException
     {
-        $request = $this->getClient()->get("{$campaign}/me", [
-            'registration' => $registration,
-        ]);
+        $request = $this->getClient()->get("{$campaign}/me/{$registration}");
 
         return $this->returnRegistration(request: $request);
     }
@@ -87,20 +85,20 @@ class ContestKitClient
         $data = $request->json('data');
 
         return new Registration([
-            'external_id' => Arr::get($data, 'id'),
-            'name' => Arr::get($data, 'first_name').' '.Arr::get($data, 'last_name'),
-            'email' => Arr::get($data, 'email_address'),
-            'bare_email' => Arr::get($data, 'bare_email'),
-            'token' => Arr::get($data, 'token'),
-            'registered_at' => Arr::get($data, 'created_at'),
-            'verified' => Arr::get($data, 'verified'),
-            'email_verified_at' => Arr::get($data, 'verified_at'),
-            'credits' => Arr::get($data, 'credits.count'),
-            'credits_daily_allotment' => Arr::get($data, 'credits.daily_allotment'),
-            'last_played_at' => Arr::get($data, 'credits.last_played_at'),
-            'play_again_at' => Arr::get($data, 'credits.play_again_at'),
-            'referral' => Arr::get($data, 'referral'),
-            'winner' => Arr::get($data, 'winner'),
+            'external_id' => data_get($data, 'id'),
+            'name' => data_get($data, 'first_name').' '.data_get($data, 'last_name'),
+            'email' => data_get($data, 'email_address'),
+            'bare_email' => data_get($data, 'bare_email'),
+            'token' => data_get($data, 'token'),
+            'registered_at' => data_get($data, 'created_at'),
+            'verified' => data_get($data, 'verified'),
+            'email_verified_at' => data_get($data, 'verified_at'),
+            'credits' => data_get($data, 'credits.count'),
+            'credits_daily_allotment' => data_get($data, 'credits.daily_allotment'),
+            'last_played_at' => data_get($data, 'credits.last_played_at'),
+            'play_again_at' => data_get($data, 'credits.play_again_at'),
+            'referral' => data_get($data, 'referral'),
+            'winner' => data_get($data, 'winner'),
         ]);
     }
 
