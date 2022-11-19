@@ -4,6 +4,7 @@ namespace ContestKit\Sdk\Client;
 
 use ContestKit\Sdk\Client\Concerns\HandlesDrawRequests;
 use ContestKit\Sdk\Client\Concerns\HandlesReferralRequests;
+use ContestKit\Sdk\Client\Concerns\HandlesRegistrations;
 use ContestKit\Sdk\Client\Concerns\HandlesRequests;
 use ContestKit\Sdk\Client\Concerns\HandlesScratchCardRequests;
 use ContestKit\Sdk\Client\Concerns\InteractsWithCampaigns;
@@ -13,7 +14,7 @@ class ContestKitClient
 {
     use HandlesRequests;
     use InteractsWithCampaigns;
-    use HandlesRegistration;
+    use HandlesRegistrations;
     use HandlesScratchCardRequests;
     use HandlesDrawRequests;
     use HandlesReferralRequests;
