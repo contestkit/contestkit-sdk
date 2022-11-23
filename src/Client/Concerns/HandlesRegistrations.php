@@ -2,7 +2,7 @@
 
 namespace ContestKit\Sdk\Client\Concerns;
 
-use ContestKit\Sdk\Data\Registration\Registration;
+use ContestKit\Sdk\Data\DTO\Registration;
 use Illuminate\Validation\ValidationException;
 
 trait HandlesRegistrations
@@ -66,23 +66,6 @@ trait HandlesRegistrations
     {
         $this->handleRequest(request: $request);
 
-        $data = $request->json('data');
-
-        return new Registration([
-            'external_id' => data_get($data, 'id'),
-            'name' => data_get($data, 'first_name').' '.data_get($data, 'last_name'),
-            'email' => data_get($data, 'email_address'),
-            'bare_email' => data_get($data, 'bare_email'),
-            'token' => data_get($data, 'token'),
-            'registered_at' => data_get($data, 'created_at'),
-            'verified' => data_get($data, 'verified'),
-            'email_verified_at' => data_get($data, 'verified_at'),
-            'credits' => data_get($data, 'credits.count'),
-            'credits_daily_allotment' => data_get($data, 'credits.daily_allotment'),
-            'last_played_at' => data_get($data, 'credits.last_played_at'),
-            'play_again_at' => data_get($data, 'credits.play_again_at'),
-            'referral' => data_get($data, 'referral'),
-            'winner' => data_get($data, 'winner'),
-        ]);
+        return new Registration($request->json('data'));
     }
 }
