@@ -23,6 +23,7 @@ trait HandlesAdminRequests
 
         return $request->json('data');
     }
+
     public function accountCampaigns()
     {
         $request = $this->getClient()
