@@ -23,11 +23,11 @@ trait HandlesAdminRequests
 
         return $request->json('data');
     }
-    
+
     public function accountPromotionCampaigns(int $promotionId)
     {
         $request = $this->getClient()
-            ->get("account/{$promotionId}/promotion");
+            ->get("account/{$promotionId}/promotion/campaigns");
 
         $this->handleRequest(request: $request);
 
