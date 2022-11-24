@@ -14,15 +14,25 @@ trait HandlesAdminRequests
         return $request->json('data');
     }
 
-    public function accountPromotion(int $campaignId)
+    public function accountPromotion(int $promotionId)
     {
         $request = $this->getClient()
-            ->get("account/{$campaignId}/promotion");
+            ->get("account/{$promotionId}/promotion");
 
         $this->handleRequest(request: $request);
 
         return $request->json('data');
     }
+    public function accountPromotionCampaigns(int $promotionId)
+    {
+        $request = $this->getClient()
+            ->get("account/{$promotionId}/promotion");
+
+        $this->handleRequest(request: $request);
+
+        return $request->json('data');
+    }
+
     public function accountCampaigns()
     {
         $request = $this->getClient()
