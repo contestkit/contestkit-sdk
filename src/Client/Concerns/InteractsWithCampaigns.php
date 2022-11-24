@@ -13,4 +13,14 @@ trait InteractsWithCampaigns
 
         return $request->json('data');
     }
+
+    public function campaigns()
+    {
+        $request = $this->getClient()
+            ->get('campaigns');
+
+        $this->handleRequest(request: $request);
+
+        return $request->json('data');
+    }
 }
