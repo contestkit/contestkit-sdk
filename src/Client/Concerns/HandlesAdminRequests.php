@@ -8,7 +8,7 @@ trait HandlesAdminRequests
     {
         $request = $this->getClient()
             ->get("admin/promotions");
-dd($request->json());
+        dd($request->json());
         $this->handleRequest(request: $request);
 
         return $request->json('data');
