@@ -7,8 +7,8 @@ trait HandlesAdminRequests
     public function accountPromotions()
     {
         $request = $this->getClient()
-            ->get("admin/promotions");
-        dd($request->json());
+            ->get('admin/promotions');
+
         $this->handleRequest(request: $request);
 
         return $request->json('data');
@@ -37,7 +37,7 @@ trait HandlesAdminRequests
     public function accountCampaigns()
     {
         $request = $this->getClient()
-            ->get("admin/campaigns");
+            ->get('admin/campaigns');
 
         $this->handleRequest(request: $request);
 
