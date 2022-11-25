@@ -7,8 +7,8 @@ trait HandlesAdminRequests
     public function accountPromotions()
     {
         $request = $this->getClient()
-            ->get("account/promotions");
-
+            ->get("admin/promotions");
+dd($request->json());
         $this->handleRequest(request: $request);
 
         return $request->json('data');
@@ -17,7 +17,7 @@ trait HandlesAdminRequests
     public function accountPromotion(int $promotionId)
     {
         $request = $this->getClient()
-            ->get("account/{$promotionId}/promotion");
+            ->get("admin/{$promotionId}/promotion");
 
         $this->handleRequest(request: $request);
 
@@ -27,7 +27,7 @@ trait HandlesAdminRequests
     public function accountPromotionCampaigns(int $promotionId)
     {
         $request = $this->getClient()
-            ->get("account/{$promotionId}/promotion/campaigns");
+            ->get("admin/{$promotionId}/promotion/campaigns");
 
         $this->handleRequest(request: $request);
 
@@ -37,7 +37,7 @@ trait HandlesAdminRequests
     public function accountCampaigns()
     {
         $request = $this->getClient()
-            ->get("account/campaigns");
+            ->get("admin/campaigns");
 
         $this->handleRequest(request: $request);
 
@@ -47,7 +47,7 @@ trait HandlesAdminRequests
     public function accountCampaign(int $campaignId)
     {
         $request = $this->getClient()
-            ->get("account/{$campaignId}/campaign");
+            ->get("admin/{$campaignId}/campaign");
 
         $this->handleRequest(request: $request);
 
