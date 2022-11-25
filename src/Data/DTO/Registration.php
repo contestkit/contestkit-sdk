@@ -17,19 +17,20 @@ class Registration extends Data
     public string $bare_email;
     public bool $verified;
 
-    public array $referral;
     public array|null $winner;
+
+    public Referral $referral;
 
     #[WithCast(DateTimeInterfaceCast::class)]
     public string $registered_at;
     #[WithCast(DateTimeInterfaceCast::class)]
-    public string $last_played_at;
+    public string | null $last_played_at;
+    #[WithCast(DateTimeInterfaceCast::class)]
+    public string | null $email_verified_at;
     #[WithCast(DateTimeInterfaceCast::class)]
     public string $play_again_at;
 
-    public function __construct(
-        array $data
-    ) {
+    public function __construct(array $data) {
         $this->external_id = data_get($data, 'id');
         $this->name = data_get($data, 'first_name').' '.data_get($data, 'last_name');
         $this->email = data_get($data, 'email_address');
@@ -41,7 +42,7 @@ class Registration extends Data
         $this->credits_daily_allotment = data_get($data, 'credits.daily_allotment');
         $this->last_played_at = data_get($data, 'credits.last_played_at');
         $this->play_again_at = data_get($data, 'credits.play_again_at');
-        $this->referral = data_get($data, 'referral');
+        $this->referral = new Referral(...data_get($data, 'referral'));
         $this->winner = data_get($data, 'winner');
     }
 }
