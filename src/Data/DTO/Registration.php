@@ -30,7 +30,8 @@ class Registration extends Data
     #[WithCast(DateTimeInterfaceCast::class)]
     public string $play_again_at;
 
-    public function __construct(array $data) {
+    public function __construct(array $data)
+    {
         $this->external_id = data_get($data, 'id');
         $this->name = data_get($data, 'first_name').' '.data_get($data, 'last_name');
         $this->email = data_get($data, 'email_address');
