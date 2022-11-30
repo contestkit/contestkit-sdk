@@ -19,15 +19,11 @@ trait InteractsWithPromotions
      public function earlyAccess(string $promotion, array $data = [])
      {
          $request = $this->getClient()
-             ->post("{$promotion}/early-access", $data);
+             ->post("promotion/{$promotion}/early-access", $data);
 
          if ($request->clientError() && $request->status() === 422) {
              throw ValidationException::withMessages($request->json()['errors']);
          }
-         if ($request->clientError()) {
-             throw ValidationException::withMessages($request->json()['errors']);
-         }
-
          $this->handleRequest(request: $request);
 
          return $request->json();
