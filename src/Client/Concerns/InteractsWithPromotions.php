@@ -24,7 +24,7 @@ trait InteractsWithPromotions
          if ($request->clientError() && $request->status() === 422) {
              throw ValidationException::withMessages($request->json()['errors']);
          }
-         
+
          $this->handleRequest(request: $request);
 
          return $request->json();

@@ -4,7 +4,6 @@ namespace ContestKit\Sdk\Client\Concerns;
 
 trait InteractsWithPrizes
 {
-
     public function getPrize(string $prizeId)
     {
         $request = $this->getClient()
@@ -35,5 +34,4 @@ trait InteractsWithPrizes
 
         return $request->json('data');
     }
-
 }
