@@ -16,6 +16,16 @@ trait InteractsWithPromotions
         return $request->json('data');
     }
 
+    public function promotionPrizes(string $promotion, bool $featured = false)
+    {
+        $request = $this->getClient()
+            ->get("{$promotion}/promotion/prizes", ['featured' => $featured]);
+
+        $this->handleRequest(request: $request);
+
+        return $request->json('data');
+    }
+
      public function earlyAccess(string $promotion, array $data = [])
      {
          $request = $this->getClient()
