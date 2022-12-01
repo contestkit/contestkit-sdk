@@ -9,6 +9,7 @@ use ContestKit\Sdk\Client\Concerns\HandlesRegistrations;
 use ContestKit\Sdk\Client\Concerns\HandlesRequests;
 use ContestKit\Sdk\Client\Concerns\HandlesScratchCardRequests;
 use ContestKit\Sdk\Client\Concerns\InteractsWithCampaigns;
+use ContestKit\Sdk\Client\Concerns\InteractsWithPrizes;
 use ContestKit\Sdk\Client\Concerns\InteractsWithPromotions;
 use Illuminate\Support\Facades\Http;
 
@@ -18,6 +19,7 @@ class ContestKitClient
     use HandlesAdminRequests;
     use InteractsWithCampaigns;
     use InteractsWithPromotions;
+    use InteractsWithPrizes;
     use HandlesRegistrations;
     use HandlesScratchCardRequests;
     use HandlesDrawRequests;
