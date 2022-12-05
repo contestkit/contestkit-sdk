@@ -29,11 +29,12 @@ trait InteractsWithPromotions
 
          return $request->json();
      }
+
      public function sendEarlyAccess(string $promotion, array $data)
      {
          $request = $this->getClient()
              ->post("promotion/{$promotion}/early-access/send", $data);
-         
+
          $this->handleRequest(request: $request);
 
          return $request->json();
