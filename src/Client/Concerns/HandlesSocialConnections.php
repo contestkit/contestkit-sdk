@@ -9,6 +9,7 @@ trait HandlesSocialConnections
         $request = $this->getClient()->post("{$campaign}/me/{$registration}/profile/twitter", $data);
 
         $this->handleRequest(request: $request);
+
         return $request->json('data');
     }
 }
