@@ -8,6 +8,7 @@ use ContestKit\Sdk\Client\Concerns\HandlesReferralRequests;
 use ContestKit\Sdk\Client\Concerns\HandlesRegistrations;
 use ContestKit\Sdk\Client\Concerns\HandlesRequests;
 use ContestKit\Sdk\Client\Concerns\HandlesScratchCardRequests;
+use ContestKit\Sdk\Client\Concerns\HandlesSocialConnections;
 use ContestKit\Sdk\Client\Concerns\InteractsWithCampaigns;
 use ContestKit\Sdk\Client\Concerns\InteractsWithPrizes;
 use ContestKit\Sdk\Client\Concerns\InteractsWithPromotions;
@@ -24,6 +25,7 @@ class ContestKitClient
     use HandlesScratchCardRequests;
     use HandlesDrawRequests;
     use HandlesReferralRequests;
+    use HandlesSocialConnections;
 
     public function __construct(protected array $config)
     {
