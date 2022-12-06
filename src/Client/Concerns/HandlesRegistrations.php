@@ -38,23 +38,22 @@ trait HandlesRegistrations
         return $this->returnRegistration(request: $request);
     }
 
-    public function resendVerificationEmail(string $campaign, string $registration)
+    public function resendVerificationEmail(string $registration)
     {
-        $request = $this->getClient()->get("{$campaign}/registration/verify", [
-            'registration' => $registration,
+        $request = $this->getClient()->put("{$registration}/verify/resend");
 
-        ]);
+        if ($request->clientError()) {
+            throw ValidationException::withMessages($request->json()['errors']);
+        }
 
         $this->handleRequest(request: $request);
 
         return $request->json('data');
     }
 
-    public function verifyRegistration(string $campaign, string $registration)
+    public function verifyRegistration(string $registration)
     {
-        $request = $this->getClient()->post("{$campaign}/registration/verify/email", [
-            'registration' => $registration,
-        ]);
+        $request = $this->getClient()->put("{$registration}/verify");
 
         return $this->returnRegistration(request: $request);
     }
