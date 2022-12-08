@@ -44,10 +44,10 @@ trait HandlesAdminRequests
         return $request->json('data');
     }
 
-    public function accountCampaign(int $campaignId)
+    public function accountCampaign(int $campaignId, array $with = [])
     {
         $request = $this->getClient()
-            ->get("admin/{$campaignId}/campaign");
+            ->get("admin/{$campaignId}/campaign", ['with' => $with]);
 
         $this->handleRequest(request: $request);
 
