@@ -14,6 +14,13 @@ trait HandlesRegistrations
         return $this->returnRegistration(request: $request);
     }
 
+    public function registration(string $campaign, string $registration): Registration|ValidationException
+    {
+        $request = $this->getClient()->get("{$campaign}/me/{$registration}");
+
+        return $this->returnRegistration(request: $request);
+    }
+
     public function registerPromoter(string $campaign, array $request): Registration|ValidationException
     {
         $request = $this->getClient()

@@ -15,6 +15,7 @@ class Registration extends Data
     public string $name;
     public string $email;
     public string $bare_email;
+    public string $hash_id;
     public bool $verified;
 
     public array|null $winner;
@@ -37,6 +38,7 @@ class Registration extends Data
         $this->email = data_get($data, 'email_address');
         $this->bare_email = data_get($data, 'bare_email');
         $this->registered_at = data_get($data, 'created_at');
+        $this->hash_id = data_get($data, 'hash_id');
         $this->verified = data_get($data, 'verified');
         $this->email_verified_at = data_get($data, 'verified_at');
         $this->credits = data_get($data, 'credits.count');
