@@ -1,6 +1,7 @@
 <?php
 
 namespace ContestKit\Sdk\Client\Concerns;
+
 use Illuminate\Validation\ValidationException;
 
 trait HandlesShippingInformationRequests

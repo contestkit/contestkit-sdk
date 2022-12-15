@@ -8,11 +8,11 @@ use ContestKit\Sdk\Client\Concerns\HandlesReferralRequests;
 use ContestKit\Sdk\Client\Concerns\HandlesRegistrations;
 use ContestKit\Sdk\Client\Concerns\HandlesRequests;
 use ContestKit\Sdk\Client\Concerns\HandlesScratchCardRequests;
+use ContestKit\Sdk\Client\Concerns\HandlesShippingInformationRequests;
 use ContestKit\Sdk\Client\Concerns\HandlesSocialConnections;
 use ContestKit\Sdk\Client\Concerns\InteractsWithCampaigns;
 use ContestKit\Sdk\Client\Concerns\InteractsWithPrizes;
 use ContestKit\Sdk\Client\Concerns\InteractsWithPromotions;
-use ContestKit\Sdk\Client\Concerns\HandlesShippingInformationRequests;
 use Illuminate\Support\Facades\Http;
 
 class ContestKitClient
