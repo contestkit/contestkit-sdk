@@ -7,7 +7,6 @@ use Illuminate\Validation\ValidationException;
 
 trait HandlesRegistrations
 {
-
     public function myPromotion(string $registration)
     {
         $request = $this->getClient()->get("/me/{$registration}/promotion");
@@ -16,7 +15,7 @@ trait HandlesRegistrations
 
         return $request->json();
     }
-    
+
     public function me(string $campaign, string $registration): Registration|ValidationException
     {
         $request = $this->getClient()->get("{$campaign}/me/{$registration}");
