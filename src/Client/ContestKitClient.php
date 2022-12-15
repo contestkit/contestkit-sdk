@@ -12,6 +12,7 @@ use ContestKit\Sdk\Client\Concerns\HandlesSocialConnections;
 use ContestKit\Sdk\Client\Concerns\InteractsWithCampaigns;
 use ContestKit\Sdk\Client\Concerns\InteractsWithPrizes;
 use ContestKit\Sdk\Client\Concerns\InteractsWithPromotions;
+use ContestKit\Sdk\Client\Concerns\HandlesShippingInformationRequests;
 use Illuminate\Support\Facades\Http;
 
 class ContestKitClient
@@ -26,6 +27,7 @@ class ContestKitClient
     use HandlesDrawRequests;
     use HandlesReferralRequests;
     use HandlesSocialConnections;
+    use HandlesShippingInformationRequests;
 
     public function __construct(protected array $config)
     {
@@ -45,6 +47,16 @@ class ContestKitClient
     {
         $request = $this->getClient()
             ->get("{$campaign}/winners");
+
+        $this->handleRequest(request: $request);
+
+        return $request->json('data');
+    }
+
+    public function winner(string $winnerId)
+    {
+        $request = $this->getClient()
+            ->get("/winner/{$winnerId}");
 
         $this->handleRequest(request: $request);
 
