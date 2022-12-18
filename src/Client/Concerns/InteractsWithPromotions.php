@@ -16,27 +16,37 @@ trait InteractsWithPromotions
         return $request->json('data');
     }
 
-     public function earlyAccess(string $promotion, array $data = [])
-     {
-         $request = $this->getClient()
-             ->post("promotion/{$promotion}/early-access", $data);
+    public function promotionWinners(string|int $promotion)
+    {
+        $request = $this->getClient()
+            ->get("promotion/{$promotion}/winners");
 
-         if ($request->clientError() && $request->status() === 422) {
-             throw ValidationException::withMessages($request->json()['errors']);
-         }
+        $this->handleRequest(request: $request);
 
-         $this->handleRequest(request: $request);
+        return $request->json('data');
+    }
 
-         return $request->json();
-     }
+    public function earlyAccess(string $promotion, array $data = [])
+    {
+        $request = $this->getClient()
+            ->post("promotion/{$promotion}/early-access", $data);
 
-     public function sendEarlyAccess(string $promotion, array $data)
-     {
-         $request = $this->getClient()
-             ->post("promotion/{$promotion}/early-access/send", $data);
+        if ($request->clientError() && $request->status() === 422) {
+            throw ValidationException::withMessages($request->json()['errors']);
+        }
 
-         $this->handleRequest(request: $request);
+        $this->handleRequest(request: $request);
 
-         return $request->json();
-     }
+        return $request->json();
+    }
+
+    public function sendEarlyAccess(string $promotion, array $data)
+    {
+        $request = $this->getClient()
+            ->post("promotion/{$promotion}/early-access/send", $data);
+
+        $this->handleRequest(request: $request);
+
+        return $request->json();
+    }
 }
